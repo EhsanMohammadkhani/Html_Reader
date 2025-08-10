@@ -20,3 +20,14 @@ C:\Users\helli\Desktop\New folder (3)\HtmlReader\HtmlReader\HtmlReader\obj\Debug
 C:\Users\helli\Desktop\New folder (3)\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.csproj.CoreCompileInputs.cache
 C:\Users\helli\Desktop\New folder (3)\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.exe
 C:\Users\helli\Desktop\New folder (3)\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.pdb
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\bin\Debug\HtmlReader.exe.config
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\bin\Debug\HtmlReader.exe
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\bin\Debug\HtmlReader.pdb
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.csproj.AssemblyReference.cache
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.exe.config
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.Form1.resources
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.Properties.Resources.resources
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.csproj.GenerateResource.cache
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.csproj.CoreCompileInputs.cache
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.exe
+C:\Users\helli\Desktop\mhelli\Html_Reader\HtmlReader\HtmlReader\HtmlReader\obj\Debug\HtmlReader.pdb
