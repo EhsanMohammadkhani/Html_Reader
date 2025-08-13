@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using ClosedXML.Excel;
 
 
 namespace HtmlReader
@@ -36,21 +37,24 @@ namespace HtmlReader
             //this.RightToLeft = RightToLeft.Yes; 
             //this.RightToLeftLayout = true; 
 
-            listView1.RightToLeft = RightToLeft.Yes;
-            listView1.RightToLeftLayout = true;
-
             browsefiles.RightToLeft = RightToLeft.Yes;
-            deletefiles.RightToLeft = RightToLeft.Yes;
 
-            MessageBox.Show(" به Html Reader خوش آمدید ", "خوش آمدید", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RtlMessageBox.Show(" به فایل خوان خوش آمدید ", "خوش آمدید", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
         private void DisplaySelectedFolder(string folderPath)
         {
 
-            ListViewItem folderItem = new ListViewItem(folderPath);
+            //ListViewItem folderItem = new ListViewItem(folderPath);
+            //listView2.Items.Add(folderItem);
+        
+            string folderName = Path.GetFileName(folderPath);
+
+            ListViewItem folderItem = new ListViewItem(folderName);
+            folderItem.Tag = folderPath;
             listView2.Items.Add(folderItem);
+        
 
         }
 
@@ -81,21 +85,6 @@ namespace HtmlReader
         private void deletefiles_Click(object sender, EventArgs e)
         {
 
-            if (listView1.SelectedItems.Count > 0)
-            {
-
-                foreach (ListViewItem selectedItem in listView1.SelectedItems)
-                {
-                    listView1.Items.Remove(selectedItem);
-                }
-
-                MessageBox.Show("فایل های انتخاب شده حذف شدند", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("لطفا یک یا چند فایل رو انتخاب کنید", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
         }
 
 
@@ -122,7 +111,7 @@ namespace HtmlReader
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگیری فایل ها: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RtlMessageBox.Show($"خطا در بارگیری فایل ها: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -160,7 +149,7 @@ namespace HtmlReader
 
             if (listView2.SelectedItems.Count > 0)
             {
-                DialogResult result = MessageBox.Show("آیا مطمئن هستید که می‌خواهید این پوشه و تمام محتویات آن را حذف کنید؟",
+                DialogResult result = RtlMessageBox.Show("آیا مطمئن هستید که می‌خواهید این پوشه و تمام محتویات آن را حذف کنید؟",
                                                     "تأیید حذف",
                                                     MessageBoxButtons.YesNo,
                                                     MessageBoxIcon.Warning);
@@ -175,7 +164,7 @@ namespace HtmlReader
             }
             else
             {
-                MessageBox.Show("لطفاً یک پوشه را انتخاب کنید.", "هشدار",
+                RtlMessageBox.Show("لطفاً یک پوشه را انتخاب کنید.", "هشدار",
                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -185,7 +174,8 @@ namespace HtmlReader
         {
             try
             {
-                string folderPath = item.Text;
+
+                string folderPath = item.Tag.ToString();
 
 
                 listView2.Items.Remove(item);
@@ -198,13 +188,85 @@ namespace HtmlReader
                     }
                 }
 
-                MessageBox.Show("پوشه و تمام محتویات آن با موفقیت حذف شد.", "موفقیت",
+                RtlMessageBox.Show("پوشه و تمام محتویات آن با موفقیت حذف شد", "موفقیت",
                                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در حذف پوشه: {ex.Message}", "خطا",
+                RtlMessageBox.Show($"خطا در حذف پوشه: {ex.Message}", "خطا",
                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+               
+                var workbook = new XLWorkbook();
+                var worksheet = workbook.Worksheets.Add("Sheet1");
+
+
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "ذخیره فایل اکسل";
+                saveFileDialog.FileName = "فایل خوان.xlsx";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    workbook.SaveAs(saveFileDialog.FileName);
+                    MessageBox.Show("فایل اکسل با موفقیت ذخیره شد.", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در ایجاد فایل اکسل: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+
+                foreach (ListViewItem selectedItem in listView1.SelectedItems)
+                {
+                    listView1.Items.Remove(selectedItem);
+                }
+
+                RtlMessageBox.Show("فایل های انتخاب شده حذف شدند", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                RtlMessageBox.Show("لطفا یک یا چند فایل رو انتخاب کنید", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "HTML Files|*.html;*.htm";
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.Title = "Select HTML Files";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                foreach (string file in openFileDialog1.FileNames)
+                {
+                    ListViewItem item = new ListViewItem(Path.GetFileName(file));
+                    item.SubItems.Add(file);
+                    listView1.Items.Add(item);
+                }
             }
         }
     }
